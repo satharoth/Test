@@ -1,0 +1,37 @@
+{% extends './base.html' %}
+
+{% block tittle%}
+EDICION LIBRERIA
+{%endblock%}
+
+{% block body%}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                  EDICION DE LIBROS
+                </div>
+                <ul class="list-group list-group-flush">
+                    <form action="/editarlibros/" method="POST">{% csrf_token %}
+                    <li class="list-group-item">
+                        <input type="text" id="ID" name="ID" value="{{libros.ID}}" class="form-control" placeholder="Libro" readonly>
+                    </li>
+                    <li class="list-group-item">
+                        <input type="text" id="Libro" name="Libro" value="{{libros.Libro}}" class="form-control" placeholder="Libro">
+                    </li>
+                    <li class="list-group-item">
+                        <input type="text" id="Autor" name="Autor" value="{{libros.Autor}}" class="form-control" placeholder="Autor">
+                    </li>
+                    <li class="list-group-item">
+                        <input type="text" id="Editorial" name="Editorial" value="{{libros.Editorial}}" class="form-control" placeholder="Editorial">
+                    </li>
+                    <li class="list-group-item">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </li>
+    
+                </ul>
+              </div>
+    </div>
+</div>
+
+{%endblock%}

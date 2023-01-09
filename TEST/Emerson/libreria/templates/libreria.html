@@ -1,0 +1,73 @@
+{% extends './base.html' %}
+
+{% block tittle%}
+GESTION LIBRERIA
+{%endblock%}
+
+{% block body%}
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+              GESTION DE LIBROS
+            </div>
+            <ul class="list-group list-group-flush">
+                <form action="/registarlibros/" method="POST">{% csrf_token %}
+                <li class="list-group-item">
+                    <input type="text" id="Libro" name="Libro" class="form-control" placeholder="Libro">
+                </li>
+                <li class="list-group-item">
+                    <input type="text" id="Autor" name="Autor" class="form-control" placeholder="Autor">
+                </li>
+                <li class="list-group-item">
+                    <input type="text" id="Editorial" name="Editorial" class="form-control" placeholder="Editorial">
+                </li>
+                <li class="list-group-item">
+                    <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                </li>
+
+            </ul>
+          </div>
+
+    
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h3> LIBROS DISPONIBLES</h3>
+        <div class="table-responsive py-2">
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Libro</th>
+                        <th>Autor</th>
+                        <th>Editorial</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in libros%}
+                    <tr>
+                        <td>{{ c.ID}}</td>
+                        <td>{{ c.Libro}}</td>
+                        <td>{{ c.Autor}}</td>
+                        <td>{{ c.Editorial}}</td>
+                        <td><a href="edicionlibros/{{ c.ID }}" class="btn btn-info">Editar</a></td>
+                        <td><a href="eliminarlibros/{{ c.ID }}" class="btn btn-danger">Borrar</a></td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+    
+        </div>
+
+    
+    </div>
+
+</div>
+
+{%endblock%}
